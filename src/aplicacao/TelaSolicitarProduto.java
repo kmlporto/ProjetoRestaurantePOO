@@ -80,7 +80,7 @@ public class TelaSolicitarProduto extends JFrame {
 		btnSolicitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					String produto = textField.getText();
+					String produto = textField.getText().toLowerCase();
 					int idmesa = Integer.parseInt(textField_1.getText());
 					Fachada.solicitarProduto(idmesa,produto);
 					lblmsg.setText("produto "+ produto + " solicitado com sucesso");
