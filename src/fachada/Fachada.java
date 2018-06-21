@@ -1,9 +1,9 @@
 package fachada;
 
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 import modelo.Produto;
 import repositorio.Restaurante;
@@ -168,10 +168,10 @@ public class Fachada {
 		}else if (!m1.isOcupada()) {
 			throw new Exception ("mesa n " + idmesa + " não possui conta aberta");
 		}
-		Date data = Calendar.getInstance().getTime();
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		String dataFormatada = formato.format(data);
-		m1.getUltimaConta().setDtfechamento(dataFormatada);
+		GregorianCalendar c = new GregorianCalendar();
+		SimpleDateFormat formatodor = new SimpleDateFormat("dd/MM/yyyy");
+		String data = formatodor.format(c.getTime());
+		m1.getUltimaConta().setDtfechamento(data);
 		m1.setOcupada(false);
 	}
 	public static double calcularGorjeta(String nome)throws Exception{

@@ -7,8 +7,6 @@ package aplicacao;
 
 import java.util.ArrayList;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 import fachada.Fachada;
 import modelo.Conta;
 import modelo.Garcom;
@@ -26,13 +24,12 @@ public class TesteRapidoProjeto {
 
 	public static void parte1(){
 		try {	
-			Produto p ;
-			p = Fachada.cadastrarProduto("feijoada", 25.0);
-			p = Fachada.cadastrarProduto("bode guisado", 20.0);
-			p = Fachada.cadastrarProduto("galinhada", 15.0);
-			p = Fachada.cadastrarProduto("cerveja", 6.0);
-			p = Fachada.cadastrarProduto("refrigerante", 5.0);
-			p = Fachada.cadastrarProduto("agua", 2.0);
+			Fachada.cadastrarProduto("feijoada", 25.0);
+			Fachada.cadastrarProduto("bode guisado", 20.0);
+			Fachada.cadastrarProduto("galinhada", 15.0);
+			Fachada.cadastrarProduto("cerveja", 6.0);
+			Fachada.cadastrarProduto("refrigerante", 5.0);
+			Fachada.cadastrarProduto("agua", 2.0);
 			ArrayList<Produto> produtos = Fachada.listarProdutos();
 			//System.out.println("produtos cadastrados:");
 			//System.out.println(produtos);
@@ -74,7 +71,7 @@ public class TesteRapidoProjeto {
 			Fachada.solicitarProduto(5, "feijoada");
 			Fachada.solicitarProduto(5, "cerveja");
 			Fachada.fecharConta(5);
-			//System.out.println("conta da mesa 5: "+ Fachada.consultarConta(5)); 
+			System.out.println("conta da mesa 5: "+ Fachada.consultarConta(5)); 
 
 
 			double gorjeta = Fachada.calcularGorjeta("baixinho");
