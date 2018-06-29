@@ -82,22 +82,22 @@ public class TelaPrincipal {
 				try{
 					//  pre-cadastro
 					Fachada.criarMesas(20);	
-					Produto p;
-					p = Fachada.cadastrarProduto("tortilhas", 15.0);
-					p = Fachada.cadastrarProduto("burritos", 17.0);
-					p = Fachada.cadastrarProduto("tacos", 16.0);
-					p = Fachada.cadastrarProduto("nachos", 20.0);
-					p = Fachada.cadastrarProduto("mixiote", 8.0);
-					p = Fachada.cadastrarProduto("quesadilha", 15.0);
-					p = Fachada.cadastrarProduto("mojito", 18.0);
-					p = Fachada.cadastrarProduto("tequila", 17.0);
-					p = Fachada.cadastrarProduto("suco de laranja", 12.0);
-					p = Fachada.cadastrarProduto("água", 2.50);
-					Garcom g;
-					g = Fachada.cadastrarGarcom("Luiz", 1, 5);
-					g = Fachada.cadastrarGarcom("Antonio", 6, 10);
-					g = Fachada.cadastrarGarcom("Manoel", 11, 15);
-					g = Fachada.cadastrarGarcom("Hermano", 16, 20);
+					
+					Fachada.cadastrarProduto("tortilhas", 15.0);
+					Fachada.cadastrarProduto("burritos", 17.0);
+					Fachada.cadastrarProduto("tacos", 16.0);
+					Fachada.cadastrarProduto("nachos", 20.0);
+					Fachada.cadastrarProduto("mixiote", 8.0);
+					Fachada.cadastrarProduto("quesadilha", 15.0);
+					Fachada.cadastrarProduto("mojito", 18.0);
+					Fachada.cadastrarProduto("tequila", 17.0);
+					Fachada.cadastrarProduto("suco de laranja", 12.0);
+					Fachada.cadastrarProduto("água", 2.50);
+					
+					Fachada.cadastrarGarcom("Luiz", 1, 5);
+					Fachada.cadastrarGarcom("Antonio", 6, 10);
+					Fachada.cadastrarGarcom("Manoel", 11, 15);
+					Fachada.cadastrarGarcom("Hermano", 16, 20);
 				}catch(Exception e){
 					System.out.println(e.getMessage());
 				}

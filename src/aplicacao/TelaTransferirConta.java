@@ -52,27 +52,27 @@ public class TelaTransferirConta extends JFrame {
 		setTitle("Transferir Conta");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 348, 189);
+		setBounds(100, 100, 348, 140);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		textField = new JTextField();
-		textField.setBounds(107, 8, 86, 20);
+		textField.setBounds(107, 14, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		lblOrig = new JLabel("Mesa de origem");
-		lblOrig.setBounds(10, 14, 87, 14);
+		lblOrig.setBounds(10, 14, 93, 14);
 		contentPane.add(lblOrig);
 
 		lblDest = new JLabel("Mesa destino");
-		lblDest.setBounds(10, 52, 87, 14);
+		lblDest.setBounds(10, 48, 87, 14);
 		contentPane.add(lblDest);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(107, 46, 86, 20);
+		textField_1.setBounds(107, 45, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 
@@ -82,8 +82,13 @@ public class TelaTransferirConta extends JFrame {
 				try{
 					int origem = Integer.parseInt(textField.getText());
 					int destino = Integer.parseInt(textField_1.getText());
-					Fachada.transferirConta(origem, destino);
-					lblmsg.setText("conta transferida!");
+					if (Fachada.verificarGarcon(origem, destino)) {
+						Fachada.transferirConta(origem, destino);
+						lblmsg.setText("conta transferida!");
+					}else {
+						lblmsg.setText("Garçons das mesas destino e origem diferme");
+
+					}
 					
 					textField.setText("");
 					textField_1.setText("");
@@ -94,11 +99,11 @@ public class TelaTransferirConta extends JFrame {
 				}
 			}
 		});
-		btnTransferir.setBounds(217, 43, 115, 23);
+		btnTransferir.setBounds(227, 43, 105, 23);
 		contentPane.add(btnTransferir);
 		
 		lblmsg = new JLabel("");
-		lblmsg.setBounds(10, 94, 322, 34);
+		lblmsg.setBounds(10, 77, 322, 23);
 		contentPane.add(lblmsg);
 	}
 }

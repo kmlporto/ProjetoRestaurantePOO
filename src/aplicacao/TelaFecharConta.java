@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import fachada.Fachada;
+import java.awt.Font;
 
 public class TelaFecharConta extends JFrame {
 
@@ -49,19 +50,20 @@ public class TelaFecharConta extends JFrame {
 		setTitle("Fechar Conta");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 311, 147);
+		setBounds(100, 100, 311, 123);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		textField = new JTextField();
-		textField.setBounds(66, 11, 86, 20);
+		textField.setBounds(10, 40, 115, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		lblMesa = new JLabel("Mesa");
-		lblMesa.setBounds(10, 14, 46, 14);
+		lblMesa = new JLabel("Digite o n\u00FAmero da mesa que deseja fechar a conta");
+		lblMesa.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMesa.setBounds(10, 14, 285, 14);
 		contentPane.add(lblMesa);
 
 		btnFechar = new JButton("Fechar");
@@ -80,11 +82,11 @@ public class TelaFecharConta extends JFrame {
 				}
 			}
 		});
-		btnFechar.setBounds(180, 10, 115, 23);
+		btnFechar.setBounds(180, 39, 115, 23);
 		contentPane.add(btnFechar);
 		
 		lblmsg = new JLabel("");
-		lblmsg.setBounds(10, 68, 285, 39);
+		lblmsg.setBounds(10, 71, 285, 20);
 		contentPane.add(lblmsg);
 	}
 }

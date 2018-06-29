@@ -39,11 +39,11 @@ public class TesteRapidoProjeto {
 			//System.out.println("mesas criadas:");
 			//System.out.println(mesas);
 
-			Garcom g;
-			g = Fachada.cadastrarGarcom("baixinho", 1,5);
-			g = Fachada.cadastrarGarcom("esperto", 6,10);
-			g = Fachada.cadastrarGarcom("zezinho", 11,15);
-			g = Fachada.cadastrarGarcom("zezinho", 16,20);
+			
+			Fachada.cadastrarGarcom("baixinho", 1,5);
+			Fachada.cadastrarGarcom("esperto", 6,10);
+			Fachada.cadastrarGarcom("zezinho", 11,15);
+			Fachada.cadastrarGarcom("zezinho", 16,20);
 			ArrayList<Garcom> garcons = Fachada.listarGarcons();
 			//System.out.println("garcons cadastrados:");
 			//System.out.println(garcons);

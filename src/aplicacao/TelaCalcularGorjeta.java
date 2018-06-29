@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import fachada.Fachada;
+import java.awt.Font;
 
 
 public class TelaCalcularGorjeta extends JFrame {
@@ -57,12 +58,13 @@ public class TelaCalcularGorjeta extends JFrame {
 		contentPane.setLayout(null);
 
 		textField = new JTextField();
-		textField.setBounds(72, 11, 86, 20);
+		textField.setBounds(10, 48, 115, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		lblNome = new JLabel("Nome");
-		lblNome.setBounds(10, 14, 46, 14);
+		lblNome = new JLabel("Por favor, digite abaixo o nome do gar\u00E7om");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(10, 14, 285, 23);
 		contentPane.add(lblNome);
 
 		btnCalcular = new JButton("Calcular");
@@ -78,15 +80,16 @@ public class TelaCalcularGorjeta extends JFrame {
 					textField.requestFocus();
 				}
 				catch(Exception erro){
+					textField.setText("");
 					lblmsg.setText(erro.getMessage());
 				}
 			}
 		});
-		btnCalcular.setBounds(168, 48, 115, 23);
+		btnCalcular.setBounds(194, 47, 101, 23);
 		contentPane.add(btnCalcular);
 		
 		lblmsg = new JLabel("");
-		lblmsg.setBounds(10, 94, 273, 14);
+		lblmsg.setBounds(10, 88, 285, 20);
 		contentPane.add(lblmsg);
 	}
 }

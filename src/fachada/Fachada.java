@@ -117,6 +117,7 @@ public class Fachada {
 			throw new Exception ("mesa n "+ idmesa + " não existe");
 		}else if (!m.isOcupada()){
 			criarConta(m.getId());
+			c = m.getUltimaConta();
 		}
 		
 		c.adicionar(p);
@@ -185,5 +186,14 @@ public class Fachada {
 				total += c.getTotal();
 		}
 		return (total*10)/100;
+	}
+	public static boolean verificarGarcon(int idmesa, String nome)throws Exception{
+		String garcom = restaurante.localizarMesa(idmesa).getGarcom().getApelido().toString();
+		return  (garcom.equals(nome));
+	}
+	public static boolean verificarGarcon(int idmesaOrig, int idmesaDest)throws Exception{
+		String garcom1 = restaurante.localizarMesa(idmesaOrig).getGarcom().getApelido().toString();
+		String garcom2 = restaurante.localizarMesa(idmesaDest).getGarcom().getApelido().toString();
+		return  (garcom1.equals(garcom2));
 	}
 }
