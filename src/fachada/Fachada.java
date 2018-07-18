@@ -139,6 +139,8 @@ public class Fachada {
 	public static void transferirConta(int idmesaorigem, int idmesadestino) throws Exception{
 		Mesa m1 = restaurante.localizarMesa(idmesaorigem);
 		Mesa m2 = restaurante.localizarMesa(idmesadestino);
+		double t2 = m2.getUltimaConta().getTotal();
+		double t1 = m1.getUltimaConta().getTotal();
 		
 		// só pode transferir de uma mesa origem, se ela existir conta e se a conta está em aberto
 		if(m1.getUltimaConta() == null) {
@@ -161,6 +163,9 @@ public class Fachada {
 		
 		// mudar a mesa na conta
 		m2.getUltimaConta().setMesa(m2);
+		
+		// mudar o total da conta destino
+		m2.getUltimaConta().setTotal(t2+t1);
 	}
 	public static void fecharConta(int idmesa) throws Exception{
 		Mesa m1 = restaurante.localizarMesa(idmesa);

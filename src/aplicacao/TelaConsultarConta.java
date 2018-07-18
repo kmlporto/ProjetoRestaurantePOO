@@ -26,7 +26,7 @@ public class TelaConsultarConta extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JLabel lblConta;
+	private JLabel lblMesa;
 	private JButton btnConsultar;
 	private JTextArea textArea;
 	private JLabel lblmsg;
@@ -66,9 +66,9 @@ public class TelaConsultarConta extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		lblConta = new JLabel("Conta");
-		lblConta.setBounds(25, 12, 46, 14);
-		contentPane.add(lblConta);
+		lblMesa = new JLabel("Mesa");
+		lblMesa.setBounds(25, 12, 46, 14);
+		contentPane.add(lblMesa);
 
 		
 
