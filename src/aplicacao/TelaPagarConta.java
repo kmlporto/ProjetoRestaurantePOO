@@ -120,13 +120,14 @@ public class TelaPagarConta extends JFrame {
 					int quantidade = Integer.parseInt(qnt.getText());
 					
 					Fachada.pagarConta(idmesa, tipo, percentual, cartao, quantidade);
-					lblmsg.setText("conta "+ idmesa + "cancelada");
+					lblmsg.setText("conta na mesa n "+ idmesa + " paga. Valor pago: R$"+ Fachada.consultarConta(idmesa).getPagamento().getValorpago());
 					
 					id.setText("");
 					ti.setText("");
 					per.setText("");
 					car.setText("");
-					qnt.requestFocus();
+					qnt.setText("");
+					id.requestFocus();
 				}
 				catch(Exception erro){
 					lblmsg.setText(erro.getMessage());

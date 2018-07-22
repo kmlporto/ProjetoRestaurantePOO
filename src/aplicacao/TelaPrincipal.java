@@ -271,7 +271,13 @@ public class TelaPrincipal {
 		});
 		mnConta.add(mntmFecharConta);
 		
-		mntmPagarConta = new JMenuItem("Pagar");
+		JMenuItem mntmPagarConta = new JMenuItem("Pagar");
+		mntmPagarConta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaPagarConta j = new TelaPagarConta();
+				j.setVisible(true);
+			}
+		});
 		mnConta.add(mntmPagarConta);
 	
 	}
