@@ -1,5 +1,5 @@
 package modelo;
-public class Produto {
+public class Produto implements Comparable<Produto>{
 	private String nome;
 	private double preco;
 	
@@ -27,6 +27,10 @@ public class Produto {
 	@Override
 	public String toString() {
 		return "\nProduto \n nome: " + nome + "\n preço: R$" + preco;
+	}
+	@Override
+	public int compareTo(Produto outro) {
+		return this.getNome().compareToIgnoreCase(outro.getNome());
 	}
 	
 }

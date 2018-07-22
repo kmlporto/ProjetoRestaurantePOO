@@ -1,5 +1,6 @@
 package repositorio;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeMap;
 
 import modelo.Conta;
@@ -67,6 +68,7 @@ public class Restaurante {
 	
 	// get's
 	public ArrayList<Produto> getProdutos(){
+		Collections.sort(produtos);
 		return produtos;
 	}
 	public TreeMap<String, Garcom> getGarcons() {
