@@ -93,11 +93,11 @@ public class Fachada {
 		if (m.isOcupada()) {
 			throw new Exception("mesa ocupada");
 		}
-		// aqui
+		
 		if (m.getUltimaConta()!=null)
 			if (m.getUltimaConta().getPagamento()==null)
 				throw new Exception ("ultima conta não foi paga");
-		// até aqui
+		
 		numconta++;
 		Conta c = new Conta(numconta, m);
 		m.setOcupada(true);
@@ -243,6 +243,10 @@ public class Fachada {
 		Garcom g = restaurante.localizarGarcom(nome);
 		if (g == null) {
 			throw new Exception ("não existe garçom " + nome);
+		}
+		for (Mesa m: g.getMesas()) {
+			if(m.isOcupada())
+				throw new Exception ("este garçom está atendendo, não pode ser excluido");
 		}
 		for (Mesa m: g.getMesas()) {
 			m.setGarcom(null);
