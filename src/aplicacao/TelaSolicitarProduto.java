@@ -26,10 +26,8 @@ public class TelaSolicitarProduto extends JFrame {
 	private JTextField textField_1;
 	private JLabel lblProd;
 	private JLabel lblMesa;
-	private JLabel lblGarcom;
 	private JButton btnSolicitar;
 	private JLabel lblmsg;
-	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -54,7 +52,7 @@ public class TelaSolicitarProduto extends JFrame {
 		setTitle("Solicitar Produto");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 334, 156);
+		setBounds(100, 100, 334, 137);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -72,20 +70,11 @@ public class TelaSolicitarProduto extends JFrame {
 		lblMesa = new JLabel("Mesa");
 		lblMesa.setBounds(10, 43, 46, 14);
 		contentPane.add(lblMesa);
-		
-		lblGarcom = new JLabel("Garçom");
-		lblGarcom.setBounds(10, 74, 46, 14);
-		contentPane.add(lblGarcom);
 
 		textField_1 = new JTextField();
 		textField_1.setBounds(72, 40, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
-
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(72, 71, 86, 20);
-		contentPane.add(textField_2);
 		
 		btnSolicitar = new JButton("Solicitar");
 		btnSolicitar.addActionListener(new ActionListener() {
@@ -93,17 +82,13 @@ public class TelaSolicitarProduto extends JFrame {
 				try{
 					String produto = textField.getText().toLowerCase();
 					int idmesa = Integer.parseInt(textField_1.getText());
-					String garcom = textField_2.getText();
-					if(Fachada.verificarGarcon(idmesa, garcom)) {
-						Fachada.solicitarProduto(idmesa,produto);
-						lblmsg.setText("produto "+ produto + " solicitado com sucesso");
-					}else {
-						lblmsg.setText("este garçom não tem acesso a esta conta");
-					}
+					
+					Fachada.solicitarProduto(idmesa,produto);
+					lblmsg.setText("produto "+ produto + " solicitado com sucesso");
 				
 					textField.setText("");
 					textField_1.setText("");
-					textField_2.setText("");
+				
 					textField.requestFocus();
 				}
 				catch(Exception erro){
@@ -111,11 +96,11 @@ public class TelaSolicitarProduto extends JFrame {
 				}
 			}
 		});
-		btnSolicitar.setBounds(217, 70, 98, 23);
+		btnSolicitar.setBounds(220, 39, 98, 23);
 		contentPane.add(btnSolicitar);
 		
 		lblmsg = new JLabel("");
-		lblmsg.setBounds(10, 96, 305, 32);
+		lblmsg.setBounds(10, 73, 305, 32);
 		contentPane.add(lblmsg);
 		
 		
