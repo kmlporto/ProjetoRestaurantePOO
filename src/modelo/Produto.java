@@ -26,7 +26,7 @@ public class Produto implements Comparable<Produto>{
 	
 	@Override
 	public String toString() {
-		return "\nProduto \n nome: " + nome + "\n preço: R$" + preco;
+		return "Produto \n  nome: " + nome + "\n  preço: R$" + preco;
 	}
 	@Override
 	public int compareTo(Produto outro) {

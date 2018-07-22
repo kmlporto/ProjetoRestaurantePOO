@@ -117,9 +117,11 @@ public class Fachada {
 		Conta c = m.getUltimaConta();
 		if (p==null) {
 			throw new Exception ("produto " + nomeproduto +" não existe");
-		}else if (m == null){
+		}
+		if (m == null){
 			throw new Exception ("mesa n "+ idmesa + " não existe");
-		}else if (!m.isOcupada()){
+		}
+		if (!m.isOcupada()){
 			criarConta(m.getId());
 			c = m.getUltimaConta();
 		}

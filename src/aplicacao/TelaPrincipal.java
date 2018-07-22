@@ -95,7 +95,7 @@ public class TelaPrincipal {
 					Fachada.cadastrarProduto("mojito", 18.0);
 					Fachada.cadastrarProduto("tequila", 17.0);
 					Fachada.cadastrarProduto("suco de laranja", 12.0);
-					Fachada.cadastrarProduto("água", 2.50);
+					Fachada.cadastrarProduto("agua", 2.50);
 					
 					Fachada.cadastrarGarcom("luiz", 1, 5);
 					Fachada.cadastrarGarcom("antonio", 6, 10);

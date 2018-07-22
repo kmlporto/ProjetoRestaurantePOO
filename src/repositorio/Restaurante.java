@@ -12,7 +12,6 @@ public class Restaurante {
 	private ArrayList<Produto> produtos = new ArrayList <Produto>();
 	private ArrayList<Mesa> mesas = new ArrayList <Mesa>();
 	private ArrayList<Conta> contas = new ArrayList <Conta>();
-	//private ArrayList<Garcom> garcons = new ArrayList <Garcom>();
 	private TreeMap<String, Garcom> garcons = new TreeMap<>();
 	
 	// adicionar, remover e localizar
