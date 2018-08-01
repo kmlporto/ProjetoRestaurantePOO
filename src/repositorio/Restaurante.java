@@ -1,7 +1,5 @@
 package repositorio;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.TreeMap;
 
 import modelo.Conta;
 import modelo.Garcom;
@@ -12,7 +10,8 @@ public class Restaurante {
 	private ArrayList<Produto> produtos = new ArrayList <Produto>();
 	private ArrayList<Mesa> mesas = new ArrayList <Mesa>();
 	private ArrayList<Conta> contas = new ArrayList <Conta>();
-	private TreeMap<String, Garcom> garcons = new TreeMap<>();
+	private ArrayList<Garcom> garcons = new ArrayList <Garcom>();
+	
 	
 	// adicionar, remover e localizar
 	public void adicionar(Produto p) {
@@ -41,13 +40,13 @@ public class Restaurante {
 		return null;
 	}
 	public void adicionar(Garcom g) {
-		garcons.put(g.getApelido(),g);
+		garcons.add(g);
 	}
 	public void remover(Garcom g) {
-		garcons.remove(g.getApelido());
+		garcons.remove(g);
 	}
 	public Garcom localizarGarcom(String apelido) {
-		for (Garcom g: garcons.values()) {
+		for (Garcom g: garcons) {
 			if(g.getApelido().equals(apelido)) return g;
 		}
 		return null;
@@ -67,10 +66,9 @@ public class Restaurante {
 	
 	// get's
 	public ArrayList<Produto> getProdutos(){
-		Collections.sort(produtos);
 		return produtos;
 	}
-	public TreeMap<String, Garcom> getGarcons() {
+	public ArrayList<Garcom> getGarcons() {
 		return garcons;
 	}
 	public ArrayList<Mesa> getMesas() {

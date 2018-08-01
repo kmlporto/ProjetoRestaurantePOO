@@ -4,16 +4,12 @@ package fachada;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
-import java.util.TreeMap;
 
 import modelo.Produto;
 import repositorio.Restaurante;
 import modelo.Garcom;
 import modelo.Conta;
 import modelo.Mesa;
-import modelo.Pagamento;
-import modelo.PagamentoCartao;
-import modelo.PagamentoDinheiro;
 
 
 public class Fachada {
@@ -33,7 +29,7 @@ public class Fachada {
 	public static ArrayList<Mesa>listarMesas(){
 		return restaurante.getMesas();
 	}
-	public static TreeMap<String, Garcom> listarGarcons(){
+	public static ArrayList<Garcom>listarGarcons(){
 		return restaurante.getGarcons();
 	}
 	public static ArrayList<Conta>listarContas(){
@@ -93,11 +89,6 @@ public class Fachada {
 		if (m.isOcupada()) {
 			throw new Exception("mesa ocupada");
 		}
-		
-		if (m.getUltimaConta()!=null)
-			if (m.getUltimaConta().getPagamento()==null)
-				throw new Exception ("ultima conta não foi paga");
-		
 		numconta++;
 		Conta c = new Conta(numconta, m);
 		m.setOcupada(true);
@@ -122,11 +113,9 @@ public class Fachada {
 		Conta c = m.getUltimaConta();
 		if (p==null) {
 			throw new Exception ("produto " + nomeproduto +" não existe");
-		}
-		if (m == null){
+		}else if (m == null){
 			throw new Exception ("mesa n "+ idmesa + " não existe");
-		}
-		if (!m.isOcupada()){
+		}else if (!m.isOcupada()){
 			criarConta(m.getId());
 			c = m.getUltimaConta();
 		}
@@ -150,8 +139,6 @@ public class Fachada {
 	public static void transferirConta(int idmesaorigem, int idmesadestino) throws Exception{
 		Mesa m1 = restaurante.localizarMesa(idmesaorigem);
 		Mesa m2 = restaurante.localizarMesa(idmesadestino);
-		double t2 = m2.getUltimaConta().getTotal();
-		double t1 = m1.getUltimaConta().getTotal();
 		
 		// só pode transferir de uma mesa origem, se ela existir conta e se a conta está em aberto
 		if(m1.getUltimaConta() == null) {
@@ -174,9 +161,6 @@ public class Fachada {
 		
 		// mudar a mesa na conta
 		m2.getUltimaConta().setMesa(m2);
-		
-		// mudar o total da conta destino
-		m2.getUltimaConta().setTotal(t2+t1);
 	}
 	public static void fecharConta(int idmesa) throws Exception{
 		Mesa m1 = restaurante.localizarMesa(idmesa);
@@ -198,11 +182,10 @@ public class Fachada {
 			throw new Exception ("não existe garçom " + nome);
 		}
 		for (Mesa m: g.getMesas()) {
-			for (Conta c: m.getContas()) 
-				if(c.getDtfechamento()!= null && c.getPagamento()!= null)
-					total += c.getPagamento().calcularGorjeta();
+			for (Conta c: m.getContas())
+				total += c.getTotal();
 		}
-		return total;
+		return (total*10)/100;
 	}
 	public static boolean verificarGarcon(int idmesa, String nome)throws Exception{
 		String garcom = restaurante.localizarMesa(idmesa).getGarcom().getApelido().toString();
@@ -212,65 +195,5 @@ public class Fachada {
 		String garcom1 = restaurante.localizarMesa(idmesaOrig).getGarcom().getApelido().toString();
 		String garcom2 = restaurante.localizarMesa(idmesaDest).getGarcom().getApelido().toString();
 		return  (garcom1.equals(garcom2));
-	}
-	public static Pagamento pagarConta(int idmesa, String tipo, int percentual, String cartao, int quantidade)throws Exception {	
-		Conta c = restaurante.localizarMesa(idmesa).getUltimaConta();
-		double total = c.getTotal();
-		String dataFechamento = c.getDtfechamento();
-		
-		if (dataFechamento == null) {
-			throw new Exception ("a conta na mesa " + idmesa +" não foi fechada");
-		}
-		if (tipo.equals("dinheiro")){
-			Pagamento p = new PagamentoDinheiro();
-			((PagamentoDinheiro) p).setPercentualdesconto(percentual);
-			((PagamentoDinheiro) p).calcularPagamento(total);
-			c.setPagamento(p);
-			return p;
-		}else if (tipo.equals("cartão") || tipo.equals("cartao")) {
-			Pagamento p = new PagamentoCartao();
-			((PagamentoCartao) p).setCartao(cartao);
-			((PagamentoCartao) p).setQuantidadeparcelas(quantidade);
-			((PagamentoCartao) p).calcularPagamento(total);
-			c.setPagamento(p);
-			return p;
-		}else {
-			throw new Exception ("tipo de pagamento " + tipo +" não existe");
-		}
-	}
-	
-	public static void excluirGarcom(String nome) throws Exception{
-		Garcom g = restaurante.localizarGarcom(nome);
-		if (g == null) {
-			throw new Exception ("não existe garçom " + nome);
-		}
-		for (Mesa m: g.getMesas()) {
-			if(m.isOcupada())
-				throw new Exception ("este garçom está atendendo, não pode ser excluido");
-		}
-		for (Mesa m: g.getMesas()) {
-			m.setGarcom(null);
-		}
-		restaurante.remover(g);	
-	}
-	
-	public static double calcularPercentualMedio(String apelido) throws Exception {
-		double total = 0;
-		int i = 0;
-		Garcom g = restaurante.localizarGarcom(apelido);
-		if (g == null) {
-			throw new Exception ("não existe garçom " + apelido);
-		}
-		for (Mesa m: g.getMesas()) {
-			for (Conta c: m.getContas())
-				if(c.getPagamento()!= null 
-				&& c.getPagamento().getClass().getSimpleName().equals("PagamentoDinheiro")) {
-					PagamentoDinheiro p = (PagamentoDinheiro) c.getPagamento();
-					total += p.getPercentualdesconto();
-					i++;
-				}
-		}
-		if (total==0) return total;
-		return total/i;
 	}
 }

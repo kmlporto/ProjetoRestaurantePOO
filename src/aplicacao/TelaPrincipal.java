@@ -40,9 +40,6 @@ public class TelaPrincipal {
 	private JMenu mmMesa;
 	private JMenuItem mntmListarM;
 	private JMenuItem mntmSolicitarP;
-	private JMenuItem mntmPagarConta;
-	private JMenuItem mntmExcluir;
-	private JMenuItem mntmPercMed;
 
 
 	/**
@@ -95,13 +92,12 @@ public class TelaPrincipal {
 					Fachada.cadastrarProduto("mojito", 18.0);
 					Fachada.cadastrarProduto("tequila", 17.0);
 					Fachada.cadastrarProduto("suco de laranja", 12.0);
-					Fachada.cadastrarProduto("agua", 2.50);
+					Fachada.cadastrarProduto("água", 2.50);
 					
-					Fachada.cadastrarGarcom("luiz", 1, 5);
-					Fachada.cadastrarGarcom("antonio", 6, 10);
-					Fachada.cadastrarGarcom("manoel", 11, 15);
-					Fachada.cadastrarGarcom("hermano", 16, 20);
-					
+					Fachada.cadastrarGarcom("Luiz", 1, 5);
+					Fachada.cadastrarGarcom("Antonio", 6, 10);
+					Fachada.cadastrarGarcom("Manoel", 11, 15);
+					Fachada.cadastrarGarcom("Hermano", 16, 20);
 				}catch(Exception e){
 					System.out.println(e.getMessage());
 				}
@@ -184,16 +180,6 @@ public class TelaPrincipal {
 		});
 		mnGarcom.add(mntmListarG);
 		
-		mntmExcluir = new JMenuItem("Excluir");
-		mntmExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaExcluirGarcom j = new TelaExcluirGarcom();
-				j.setVisible(true);
-			}
-		});
-		
-		mnGarcom.add(mntmExcluir);
-		
 		
 		mntmCalcularG = new JMenuItem("Gorjeta");
 		mntmCalcularG.addActionListener(new ActionListener() {
@@ -203,15 +189,6 @@ public class TelaPrincipal {
 			}
 		});
 		mnGarcom.add(mntmCalcularG);
-		
-		mntmPercMed = new JMenuItem("Perc Med");
-		mntmPercMed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaPercentualMed j = new TelaPercentualMed();
-				j.setVisible(true);
-			}
-		});
-		mnGarcom.add(mntmPercMed);
 		
 		
 		JMenu mnConta = new JMenu("     Conta     ");
@@ -270,15 +247,6 @@ public class TelaPrincipal {
 			}
 		});
 		mnConta.add(mntmFecharConta);
-		
-		JMenuItem mntmPagarConta = new JMenuItem("Pagar");
-		mntmPagarConta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaPagarConta j = new TelaPagarConta();
-				j.setVisible(true);
-			}
-		});
-		mnConta.add(mntmPagarConta);
 	
 	}
 }

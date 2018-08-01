@@ -7,7 +7,6 @@ public class Conta {
 	private double total;
 	private Mesa mesa;
 	private ArrayList<Produto> produtos = new ArrayList<Produto>();
-	private Pagamento pagamento;
 	
 	// gets e sets
 	public int getNumero() {
@@ -39,13 +38,8 @@ public class Conta {
 	}
 	public void setProdutos(ArrayList<Produto> produtos) {
 		this.produtos = produtos;
-	}	
-	public Pagamento getPagamento() {
-		return pagamento;
 	}
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
-	}
+	
 	// adicionar, remover e localizar
 	public void adicionar(Produto p) {
 		produtos.add(p);
@@ -71,8 +65,6 @@ public class Conta {
 		if (produtos != null)
 			for (Produto p: produtos)
 				txt +=  "\n   nome: "+ p.getNome()+ "\n   preço: R$" + p.getPreco();
-		if(this.getPagamento() != null)
-			txt += this.getPagamento();
 		return txt;
 	}
 	
