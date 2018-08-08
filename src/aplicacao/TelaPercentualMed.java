@@ -17,16 +17,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import fachada.Fachada;
-import modelo.Produto;
+import java.awt.Font;
 
-public class TelaSolicitarProduto extends JFrame {
+
+public class TelaPercentualMed extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JLabel lblProd;
-	private JLabel lblMesa;
-	private JButton btnSolicitar;
+	private JLabel lblNome;
+	private JButton btnCalcular;
 	private JLabel lblmsg;
 
 	/**
@@ -36,7 +35,7 @@ public class TelaSolicitarProduto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaSolicitarProduto frame = new TelaSolicitarProduto();
+					TelaPercentualMed frame = new TelaPercentualMed();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,61 +47,49 @@ public class TelaSolicitarProduto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaSolicitarProduto() {
-		setTitle("Solicitar Produto");
+	public TelaPercentualMed() {
+		setTitle("Excluir Garçom");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 334, 137);
+		setBounds(100, 100, 311, 147);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		textField = new JTextField();
-		textField.setBounds(72, 11, 86, 20);
+		textField.setBounds(10, 48, 115, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		lblProd = new JLabel("Produto");
-		lblProd.setBounds(10, 14, 46, 14);
-		contentPane.add(lblProd);
+		lblNome = new JLabel("Por favor, digite abaixo o nome do gar\u00E7om");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(10, 14, 285, 23);
+		contentPane.add(lblNome);
 
-		lblMesa = new JLabel("Mesa");
-		lblMesa.setBounds(10, 43, 46, 14);
-		contentPane.add(lblMesa);
-
-		textField_1 = new JTextField();
-		textField_1.setBounds(72, 40, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		btnSolicitar = new JButton("Solicitar");
-		btnSolicitar.addActionListener(new ActionListener() {
+		btnCalcular = new JButton("Calcular");
+		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					String produto = textField.getText().toLowerCase();
-					int idmesa = Integer.parseInt(textField_1.getText());
+					String nome = textField.getText();
+					double percentual = Fachada.calcularPercentualMedio(nome);
 					
-					Fachada.solicitarProduto(idmesa,produto);
-					lblmsg.setText("produto "+ produto + " solicitado com sucesso");
-				
+					lblmsg.setText("garçom "+ nome + " possui um percentual medio de " + percentual);
+					
 					textField.setText("");
-					textField_1.setText("");
-				
 					textField.requestFocus();
 				}
 				catch(Exception erro){
+					textField.setText("");
 					lblmsg.setText(erro.getMessage());
 				}
 			}
 		});
-		btnSolicitar.setBounds(220, 39, 98, 23);
-		contentPane.add(btnSolicitar);
+		btnCalcular.setBounds(194, 47, 101, 23);
+		contentPane.add(btnCalcular);
 		
 		lblmsg = new JLabel("");
-		lblmsg.setBounds(10, 73, 305, 32);
+		lblmsg.setBounds(10, 88, 285, 20);
 		contentPane.add(lblmsg);
-		
-		
 	}
 }
